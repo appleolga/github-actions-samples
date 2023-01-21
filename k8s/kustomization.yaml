@@ -8,4 +8,4 @@ namespace: hello-gitops
 images:
 - name: hello-gitops
   newName: appleolga/hello-gitops
-  newTag: fe230d5875bc6fe6576eb6b4fefc1a324926efbf
+  newTag: 4837aeb07da2762dbeff802e15f5a486ea4fe3d3
