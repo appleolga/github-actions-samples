@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
         - image: hello-gitops
-          platform: linux/amd64
           name: hello-gitops
           ports:
             - name: http
