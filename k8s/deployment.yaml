@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   labels:
     app: hello-gitops
-  name: hello-gitops-v1
+  name: hello-gitops-v2
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: hello-gitops
-      version: v1
+      version: v2
   template:
     metadata:
       labels:
         app: hello-gitops
-        version: v1
+        version: v2
     spec:
       containers:
         - image: hello-gitops
@@ -24,7 +24,7 @@ spec:
               containerPort: 8050
           env:
             - name: VERSION
-              value: v1
+              value: v2
 #          livenessProbe:
 #            httpGet:
 #              path: /live

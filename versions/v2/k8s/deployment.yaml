@@ -5,7 +5,7 @@ metadata:
     app: hello-gitops
   name: hello-gitops-v2
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: hello-gitops
@@ -25,14 +25,14 @@ spec:
           env:
             - name: VERSION
               value: v2
-          livenessProbe:
-            httpGet:
-              path: /live
-              port: probe
-            initialDelaySeconds: 5
-            periodSeconds: 5
-          readinessProbe:
-            httpGet:
-              path: /ready
-              port: probe
-            periodSeconds: 5
+#          livenessProbe:
+#            httpGet:
+#              path: /live
+#              port: probe
+#            initialDelaySeconds: 5
+#            periodSeconds: 5
+#          readinessProbe:
+#            httpGet:
+#              path: /ready
+#              port: probe
+#            periodSeconds: 5

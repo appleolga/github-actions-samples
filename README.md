@@ -13,10 +13,20 @@ Blue/green deployment to release a single service
 
 
     --Test if the deployment was successful--
+        --check which namespace current version is deployed on--
+        kubectl get ns | grep python-app
+        "python-app-blue" or "python-app-green"
+        
+        --switch to this namespace and list pods--
+        kubens python-app-green 
+        kubectl get po 
 
-    kubectl -n hello-gitops port-forward $(kubectl -n hello-gitops get po -o name) 8111:8050
-    curl localhost:8111
-    "Hello, world!" 
+        --choose any pod and run port-forwarding--
+        kubectl port-forward {pod_id} 8111:8050
+
+        --open a new terminal an run curl--
+        curl localhost:8111
+        "Hello, world!" 
 
 
 2. version 2 is deployed without stopping v1
