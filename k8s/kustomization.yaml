@@ -8,4 +8,4 @@ namespace: python-app-blue
 images:
 - name: hello-gitops
   newName: appleolga/hello-gitops
-  newTag: 0af7f246ad7315941e932da98ef1b4f3b3c52d05
+  newTag: 410d007f8a35cb068c2c0aa46787b6330a80f641
