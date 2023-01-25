@@ -140,23 +140,6 @@ jobs:
       run: |
         kubectl apply -k k8s/ 
 
-    - name: Check new version is on
-      run: |
-        rolloutOk=`kubectl -n ${{ env.NEW_NAMESPACE }} rollout status deploy hello-gitops-v2 -w | grep success | wc -l`
-        if [ rolloutOk -eq 1 ]
-        then
-          kubectl -n ${{ env.OLD_NAMESPACE }} patch service hello-gitops -p '{"spec":{"selector":{"version":"v2"}}}'
-        fi
-
-    # REMOVE OLD DEPLOYMENT!!
-    - name: Remove old namespace
-      run: |
-        namespacePresentOld=`kubectl get ns | grep ${{ env.OLD_NAMESPACE }} | wc -l`
-        if [ $namespacePresentOld -eq 1 ]
-        then
-          kubectl delete ns ${{ env.OLD_NAMESPACE }} --wait=true
-        fi
-
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
