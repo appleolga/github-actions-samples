@@ -4,8 +4,8 @@ resources:
 - deployment.yaml
 - service.yaml
 - ingress.yaml
-namespace: python-app-blue
+namespace: python-app-green
 images:
 - name: hello-gitops
   newName: appleolga/hello-gitops
-  newTag: 410d007f8a35cb068c2c0aa46787b6330a80f641
+  newTag: 298c139690faf7aff55783e7ecf7a5e262fa52cf
