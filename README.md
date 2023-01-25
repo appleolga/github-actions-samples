@@ -17,26 +17,13 @@ Blue/green deployment to release a single service
         kubectl get ns | grep python-app
         "python-app-blue" or "python-app-green"
         
-        --switch to this namespace and list pods--
+        --switch to this namespace and curl ingress-
         kubens python-app-green 
-        kubectl get po 
-
-        --run port-forwarding--
-        kubectl port-forward $(kubectl get po -o name) 8111:8050
-
-        --open a new terminal an run curl--
-        curl localhost:8111
-        "Hello, world!" 
+        curl $(kubectl get ing -o jsonpath={.items..status.loadBalancer.ingress[0].ip})
 
 
 2. version 2 is deployed without stopping v1
 
-
-
-        --To see the deployment in action run the following command--
-        for ns in $(kubens | grep python); do 
-            watch kubectl -n ${ns} get po
-        done
 
     --Wait for version 2 to be running--
     $ kubectl rollout status deploy hello-gitops-v2 -w
