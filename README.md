@@ -17,9 +17,11 @@ Blue/green deployment to release a single service
         kubectl get ns | grep python-app
         "python-app-blue" or "python-app-green"
         
-        --switch to this namespace and curl ingress-
-        kubens python-app-green 
-        curl $(kubectl get ing -o jsonpath={.items..status.loadBalancer.ingress[0].ip})
+        --switch to this namespace 
+        kubens python-app-blue
+
+        -- wait till ingress has been created and curl it
+        curl $(kubectl get ing -o jsonpath={.items..status.loadBalancer.ingress[0].ip}) ; echo
 
 
 2. version 2 is deployed without stopping v1
