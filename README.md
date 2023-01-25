@@ -13,6 +13,7 @@ Blue/green deployment to release a single service
 
 
     --Test if the deployment was successful--
+
         --check which namespace current version is deployed on--
         kubectl get ns | grep python-app
         "python-app-blue" or "python-app-green"
