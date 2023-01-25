@@ -142,10 +142,10 @@ jobs:
 
     - name: Check new version is on
       run: |
-        rolloutOk = `kubectl -n ${{ env.NEW_NAMESPACE }} rollout status deploy hello-gitops-v2 -w | grep success | wc -l`
+        rolloutOk=`kubectl -n ${{ env.NEW_NAMESPACE }} rollout status deploy hello-gitops-v2 -w | grep success | wc -l`
         if [ rolloutOk -eq 1 ]
         then
-          kubectl -n ${{ env.OLD_NAMESPACE }} patch service hello-gitops -p '{"spec":{"selector":{"version":"v2"}}}
+          kubectl -n ${{ env.OLD_NAMESPACE }} patch service hello-gitops -p '{"spec":{"selector":{"version":"v2"}}}'
         fi
 
     # REMOVE OLD DEPLOYMENT!!

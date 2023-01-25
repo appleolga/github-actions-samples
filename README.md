@@ -25,11 +25,10 @@ Blue/green deployment to release a single service
 
 
 2. version 2 is deployed without stopping v1
+    
 
-
-    --Wait for version 2 to be running--
-    $ kubectl rollout status deploy hello-gitops-v2 -w
-    deployment "hello-gitops-v2" successfully rolled out
+    --Check deployemnt--
+    $ while sleep 0.1; do curl $(kubectl get ing -o jsonpath={.items..status.loadBalancer.ingress[0].ip}) ; done
 
 3. incoming traffic is switched from version 1 to version 2
 
