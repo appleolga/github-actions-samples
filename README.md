@@ -28,20 +28,10 @@ Blue/green deployment to release a single service
     
 
     --Check deployemnt--
-    $ while sleep 0.1; do curl $(kubectl get ing -o jsonpath={.items..status.loadBalancer.ingress[0].ip}) ; done
-
-3. incoming traffic is switched from version 1 to version 2
+    $ while sleep 2; do curl $(kubectl get ing -o jsonpath={.items..status.loadBalancer.ingress[0].ip}) ; done
 
 
-    --switch traffic --
-     $ kubectl patch service my-app -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
-
-    --Test if the deployment was successful--
-    kubectl -n hello-gitops port-forward $(kubectl -n hello-gitops get po -o name) 8111:8050
-    curl localhost:8111
-    "Hello, Sasha!" 
-
-4. version 1 is shutdown
+3. version 1 is shutdown
 
 
     $ kubectl delete deploy hello-gitops-v1
