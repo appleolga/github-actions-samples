@@ -21,8 +21,8 @@ Blue/green deployment to release a single service
         kubens python-app-green 
         kubectl get po 
 
-        --choose any pod and run port-forwarding--
-        kubectl port-forward {pod_id} 8111:8050
+        --run port-forwarding--
+        kubectl port-forward $(kubectl get po -o name) 8111:8050
 
         --open a new terminal an run curl--
         curl localhost:8111
@@ -33,12 +33,13 @@ Blue/green deployment to release a single service
 
 
 
-    --To see the deployment in action, open a new terminal and run the following--
-    command:
-    $ watch kubectl get po
+        --To see the deployment in action run the following command--
+        for ns in $(kubens | grep python); do 
+            watch kubectl -n ${ns} get po
+        done
 
-    --Wait for all the version 2 pods to be running--
-    $ kubectl rollout status deploy hello-gitops-v1 -w
+    --Wait for version 2 to be running--
+    $ kubectl rollout status deploy hello-gitops-v2 -w
     deployment "hello-gitops-v2" successfully rolled out
 
 3. incoming traffic is switched from version 1 to version 2
