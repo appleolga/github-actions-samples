@@ -28,9 +28,10 @@ Blue/green deployment to release a single service
 2. version 2 is deployed without stopping v1
     
 
-    --Check deployemnt--
-    $ while sleep 2; do curl $(kubectl get ing -o jsonpath={.items..status.loadBalancer.ingress[0].ip}) ; done
 
+        --Check deployemnt--
+        $ while sleep 2; do curl $(kubectl get ing -o jsonpath={.items..status.loadBalancer.ingress[0].ip}) ; done
+    
 
 3. version 1 is shutdown
 
